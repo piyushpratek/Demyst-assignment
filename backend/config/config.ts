@@ -27,6 +27,12 @@ if (!envPath) {
 }
 
 dotenv.config({ path: envPath })
+if (!process.env.MONGO_URI) {
+  logger.error('Please define MONGO_URI in your .env file.')
+  process.exit(1)
+}
+
+dotenv.config({ path: envPath })
 if (!process.env.PORT) {
   logger.error('Please define PORT in your .env file.')
   process.exit(1)
@@ -34,4 +40,4 @@ if (!process.env.PORT) {
 
 export const NODE_ENV = process.env.NODE_ENV
 export const PORT = Number(process.env.PORT)
-
+export const MONGO_URI = process.env.MONGO_URI
